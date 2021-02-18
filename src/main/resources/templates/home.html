@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/recipe" role="button">Zobacz wszystkie przepisy</a>
+    <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>
+
+    <h1 style="text-align: center" class="mt-4" >MOJE ULUBIONE PRZEPISY</h1>
+
+    <div class="card" th:each="recipe: ${recipesList}">
+        <h5 class="card-header" th:text="${recipe.title}"></h5>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${recipe.introduction}"></h5>
+            <p class="card-text" th:text="|Kategoria: ${recipe.category.displayName}|"></p>
+            <p class="card-text" th:text="|Czas przygotowania: ${recipe.prepTime} min|"></p>
+            <a th:href="|/recipe/${recipe.id}|" class="btn btn-primary">Idź do przepisu</a>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

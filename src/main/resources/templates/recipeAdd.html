@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/recipe" role="button">Powrót do wszystkich przepisów</a>
+
+    <h2>Dodawanie nowego przepisu</h2>
+    <br>
+    <form th:action="|/recipe/add|" method="post" th:object="${recipe}">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Tytuł przepisu</label>
+            <input type="text" class="form-control" id="title"  aria-describedby="inputGroupPrepend2" required th:field="*{title}">
+        </div>
+
+        <div class="mb-3">
+            <label for="introduction" class="form-label">Podsumowanie</label>
+            <input type="text" class="form-control" id="introduction" aria-describedby="inputGroupPrepend2" required
+                   th:field="*{introduction}">
+        </div>
+
+        <div class="mb-3">
+            <label for="prepTime" class="form-label">Czas przygotowania</label>
+            <input type="number" min="0" class="form-control" id="prepTime" aria-describedby="inputGroupPrepend2" required
+                   th:field="*{prepTime}">
+        </div>
+
+        <div class="mb-3">
+            <label for="numberOfServings" class="form-label">Ilość porcji</label>
+            <input type="number" min="0" class="form-control" id="numberOfServings" aria-describedby="inputGroupPrepend2" required
+                   th:field="*{numberOfServings}">
+        </div>
+
+        <div class="mb-3">
+            <label for="category" class="form-label">Kategoria przepisu</label>
+                <select class="form-select" id="category" aria-describedby="inputGroupPrepend2" required th:field="*{category}">
+                        <option selected value=""></option>
+                        <option th:each="category : ${T(pl.olita.cookbook.Category).values()}"
+                            th:value="${category}"
+                            th:text="${category.getDisplayName()}">
+                            nazwa_kategorii
+                        </option>
+                </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Składniki</label>
+            <textarea class="form-control" id="ingredients" aria-describedby="inputGroupPrepend2" required th:field="*{ingredients}" ></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Przygotowanie</label>
+            <textarea class="form-control" id="description" aria-describedby="inputGroupPrepend2" required th:field="*{description}" ></textarea>
+        </div>
+
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" th:field="*{favourite}">
+            <label class="form-check-label" for="flexSwitchCheckChecked">Dodaj do ulubionych</label>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3" >Dodaj</button>
+        </div>
+
+    </form>
+
+</div>
+</body>
+</html>
