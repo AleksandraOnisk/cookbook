@@ -22,13 +22,14 @@ public class RecipeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        recipesList = recipeRepository.findAll();
+        recipesList = recipeRepository.findByFavouriteTrue();
         model.addAttribute("recipesList", recipesList);
         return "home";
     }
+
     @GetMapping("/recipe")
-    public String recipesList(Model model, @RequestParam(required = false) Category category){
-        if(category != null){
+    public String recipesList(Model model, @RequestParam(required = false) Category category) {
+        if (category != null) {
             recipesList = recipeRepository.findByCategoryOrderByTitleAsc(category);
         } else {
             recipesList = recipeRepository.findAll();
@@ -36,6 +37,7 @@ public class RecipeController {
         model.addAttribute("recipesList", recipesList);
         return "recipesList";
     }
+
     @GetMapping("/recipe/add")
     public String addNewRecipeForm(Model model) {
         Recipe newOne = new Recipe();
@@ -48,14 +50,28 @@ public class RecipeController {
         recipeRepository.save(recipe);
         return "redirect:/recipe";
     }
+
     @GetMapping("/recipe/{id}")
     public String showRecipe(@PathVariable Long id, Model model) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
 
         if (recipeOptional.isPresent()) {
-           Recipe recipe = recipeOptional.get();
+            Recipe recipe = recipeOptional.get();
             model.addAttribute("recipe", recipe);
             return "recipe";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/recipe/{id}/edit")
+    public String showRecipeEditForm(@PathVariable Long id, Model model) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+
+        if (recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            model.addAttribute("recipeToEdit", recipe);
+            return "recipeEdit";
         } else {
             return "redirect:/";
         }

@@ -1,8 +1,9 @@
 package pl.olita.cookbook;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Entity(name="recipes")
+@Entity(name = "recipe")
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,17 +12,20 @@ public class Recipe {
     private String title;
     private String introduction;
 
-    @Column(name="prep_time")
+    @Column(name = "prep_time")
     private Integer prepTime;
 
-    @Column(name="number_of_servings")
+    @Column(name = "number_of_servings")
     private Integer numberOfServings;
 
     @Enumerated(EnumType.STRING)
     private Category category;
 
     private String description;
-    private String ingredients;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.REMOVE)
+    private List<Ingredient> ingredient;
+
     private boolean favourite;
 
     public Long getId() {
@@ -80,12 +84,12 @@ public class Recipe {
         this.description = description;
     }
 
-    public String getIngredients() {
-        return ingredients;
+    public List<Ingredient> getIngredient() {
+        return ingredient;
     }
 
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
+    public void setIngredient(List<Ingredient> ingredient) {
+        this.ingredient = ingredient;
     }
 
     public boolean isFavourite() {

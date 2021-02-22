@@ -10,7 +10,7 @@
 
     <h2>Edytowanie przepisu</h2>
     <br>
-    <form th:action="|recipe/add|" method="post" th:object="${recipe}">
+    <form th:href="|/recipe/${recipeToEdit.id}|" method="post" th:object="${recipeToEdit}">
 
         <div class="mb-3">
             <label for="title" class="form-label">Tytuł przepisu</label>
@@ -49,7 +49,7 @@
 
         <div class="mb-3">
             <label for="ingredients" class="form-label">Składniki</label>
-            <textarea class="form-control" id="ingredients" aria-describedby="inputGroupPrepend2" required th:field="*{ingredients}" ></textarea>
+            <textarea class="form-control" id="ingredients" aria-describedby="inputGroupPrepend2" required th:field="*{ingredient}" ></textarea>
         </div>
 
         <div class="mb-3">

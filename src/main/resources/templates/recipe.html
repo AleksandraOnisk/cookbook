@@ -6,25 +6,25 @@
 <div th:replace="fragments :: header"></div>
 <div class="content" >
     <br>
-    <a class="btn btn-primary" href="/recipe" role="button">Zobacz wszystkie przepisy</a>
+    <a class="btn btn-primary" href="/recipe" role="button">Wróc</a>
     <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>
-    <br>
+    <br><br/>
     <h2 th th:text="${recipe.title}"></h2>
 
-    <b> Podsumowanie: </b><br/>
-    <span th:text="${recipe.introduction}"> </span><br/>
+    <b> Opis: </b><br/>
+    <span th:text="${recipe.introduction}"> </span><br/><br/>
 
     <b>Czas przygotowania:</b><br/>
-    <span th:text="${recipe.prepTime}"> </span><br/>
+    <span th:text="${recipe.prepTime}"> </span><br/><br/>
 
     <b>Ilość porcji :</b><br/>
     <span th:text="${recipe.numberOfServings}"> </span><br/><br/>
 
     <b>Kategoria :</b><br/>
-    <span th:text="${recipe.category}"> </span><br/><br/>
+    <span th:text="${recipe.category.displayName}"> </span><br/><br/>
 
     <b>Składniki :</b><br/>
-    <span th:text="${recipe.ingredients}"> </span><br/><br/>
+    <span th:text="${recipe.ingredient}"> </span><br/><br/>
 
     <b>Przygotowanie :</b><br/>
     <span th:text="${recipe.description}"> </span><br/><br/>
@@ -32,7 +32,7 @@
     <b>Ulubione?  :</b><br/>
     <span th:text="${recipe.isFavourite}"> </span><br/><br/>
 
-    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/edit|" role="button">Edytuj zadanie</a>
+    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/edit|" role="button">Edytuj przepis</a>
 
 </div>
 </body>

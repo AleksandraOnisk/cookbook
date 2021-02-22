@@ -24,13 +24,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="prepTime" class="form-label">Czas przygotowania</label>
+            <label for="prepTime" class="form-label">Czas przygotowania [min]</label>
             <input type="number" min="0" class="form-control" id="prepTime" aria-describedby="inputGroupPrepend2" required
                    th:field="*{prepTime}">
         </div>
 
         <div class="mb-3">
-            <label for="numberOfServings" class="form-label">Ilość porcji</label>
+            <label for="numberOfServings" class="form-label">Ilość porcji [szt]</label>
             <input type="number" min="0" class="form-control" id="numberOfServings" aria-describedby="inputGroupPrepend2" required
                    th:field="*{numberOfServings}">
         </div>
@@ -49,7 +49,7 @@
 
         <div class="mb-3">
             <label for="ingredients" class="form-label">Składniki</label>
-            <textarea class="form-control" id="ingredients" aria-describedby="inputGroupPrepend2" required th:field="*{ingredients}" ></textarea>
+            <textarea class="form-control" id="ingredients" aria-describedby="inputGroupPrepend2" required th:field="*{ingredient}" ></textarea>
         </div>
 
         <div class="mb-3">

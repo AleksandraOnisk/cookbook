@@ -2,7 +2,7 @@ package pl.olita.cookbook;
 
 public enum Category {
 
-    BREAKFAST("ŚNIADANIE"), LUNCH ("LUNCH"), DINNER("OBIAD"), DESSERT("DESER"), SUPPER("KOLACJA");
+    BREAKFAST("ŚNIADANIE"), LUNCH("LUNCH"), DINNER("OBIAD"), DESSERT("DESER"), SUPPER("KOLACJA"), OTHER("INNE");
 
     private String displayName;
 
