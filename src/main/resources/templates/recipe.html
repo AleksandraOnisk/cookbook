@@ -7,7 +7,6 @@
 <div class="content" >
     <br>
     <a class="btn btn-primary" href="/recipe" role="button">Wróc</a>
-    <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>
     <br><br/>
     <h2 th th:text="${recipe.title}"></h2>
 
@@ -24,15 +23,20 @@
     <span th:text="${recipe.category.displayName}"> </span><br/><br/>
 
     <b>Składniki :</b><br/>
-    <span th:text="${recipe.ingredient}"> </span><br/><br/>
+
+    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/addIngredients|" role="button">Składniki</a> <br>
+    <span th:each="ingredient : ${recipe.ingredient}" th:text="|${ingredient.name}, |"> </span><br/><br/>
 
     <b>Przygotowanie :</b><br/>
-    <span th:text="${recipe.description}"> </span><br/><br/>
+    <td>
+        <span th:text="${recipe.description}"> </span><br/><br/>
+    </td>
 
     <b>Ulubione?  :</b><br/>
     <span th:text="${recipe.isFavourite}"> </span><br/><br/>
 
     <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/edit|" role="button">Edytuj przepis</a>
+    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/delete|" role="button">Usuń przepis</a>
 
 </div>
 </body>

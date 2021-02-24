@@ -1,14 +1,14 @@
 package pl.olita.cookbook;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "recipe")
+@Entity
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
     private String introduction;
 
@@ -20,12 +20,10 @@ public class Recipe {
 
     @Enumerated(EnumType.STRING)
     private Category category;
-
     private String description;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.REMOVE)
-    private List<Ingredient> ingredient;
-
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Ingredient> ingredients = new ArrayList<>();
     private boolean favourite;
 
     public Long getId() {
@@ -85,11 +83,11 @@ public class Recipe {
     }
 
     public List<Ingredient> getIngredient() {
-        return ingredient;
+        return ingredients;
     }
 
     public void setIngredient(List<Ingredient> ingredient) {
-        this.ingredient = ingredient;
+        this.ingredients = ingredient;
     }
 
     public boolean isFavourite() {

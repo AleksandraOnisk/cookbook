@@ -13,16 +13,16 @@ import java.util.Optional;
 @Controller
 public class RecipeController {
 
-    private RecipeRepository recipeRepository;
+    private RecipeService recipeService;
     private List<Recipe> recipesList;
 
-    public RecipeController(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
+    public RecipeController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @GetMapping("/")
     public String home(Model model) {
-        recipesList = recipeRepository.findByFavouriteTrue();
+        recipesList = recipeService.findByFavouriteTrue();
         model.addAttribute("recipesList", recipesList);
         return "home";
     }
@@ -30,9 +30,9 @@ public class RecipeController {
     @GetMapping("/recipe")
     public String recipesList(Model model, @RequestParam(required = false) Category category) {
         if (category != null) {
-            recipesList = recipeRepository.findByCategoryOrderByTitleAsc(category);
+            recipesList = recipeService.findByCategoryOrderByTitleAsc(category);
         } else {
-            recipesList = recipeRepository.findAll();
+            recipesList = recipeService.findAllRecipe();
         }
         model.addAttribute("recipesList", recipesList);
         return "recipesList";
@@ -40,20 +40,27 @@ public class RecipeController {
 
     @GetMapping("/recipe/add")
     public String addNewRecipeForm(Model model) {
-        Recipe newOne = new Recipe();
-        model.addAttribute("recipe", newOne);
+        Recipe newRecipe = new Recipe();
+        model.addAttribute("recipe", newRecipe);
         return "recipeAdd";
     }
 
     @PostMapping("/recipe/add")
     public String addNewRecipe(Recipe recipe) {
-        recipeRepository.save(recipe);
+        recipeService.saveRecipe(recipe);
         return "redirect:/recipe";
+    }
+
+    @GetMapping("/recipe/listIngredients")
+    public String showIngredients(Model model) {
+        List<Ingredient> ingredients = recipeService.findAllIngredients();
+        model.addAttribute("ingredients", ingredients);
+        return "listIngredients";
     }
 
     @GetMapping("/recipe/{id}")
     public String showRecipe(@PathVariable Long id, Model model) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
+        Optional<Recipe> recipeOptional = recipeService.findById(id);
 
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
@@ -64,17 +71,60 @@ public class RecipeController {
         }
     }
 
+    @GetMapping("/recipe/{id}/addIngredients")
+    public String addIngredientsForm(@PathVariable Long id, Model model) {
+        Optional<Recipe> byId = recipeService.findById(id);
+        if (byId.isPresent()) {
+            Recipe recipe = byId.get();
+            List<Ingredient> ingredients = recipeService.findAllIngredients();  // do zmiany to będzie
+            model.addAttribute("recipe", recipe);
+            model.addAttribute("ingredients", ingredients);
+            return "addIngredients";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/recipe/{id}/addIngredients")
+    public String addIngredientsToRecipe(@PathVariable Long id, Ingredient ingredient) {
+        Ingredient newIngredient = new Ingredient();
+        newIngredient.setRecipe(recipeService.findById(id).orElse(null));
+        recipeService.saveIngredient(newIngredient);
+        return "redirect:/recipe/" + ingredient.getRecipe().getId();
+    }
+
     @GetMapping("/recipe/{id}/edit")
     public String showRecipeEditForm(@PathVariable Long id, Model model) {
-        Optional<Recipe> recipeOptional = recipeRepository.findById(id);
-
+        Optional<Recipe> recipeOptional = recipeService.findById(id);
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             model.addAttribute("recipeToEdit", recipe);
+            model.addAttribute("ingredients", recipeService.findAllIngredients());
             return "recipeEdit";
         } else {
             return "redirect:/";
         }
     }
 
+    @PostMapping("/recipe/{id}/edit")
+    public String editRecipe(@PathVariable Long id, Recipe recipe) {
+        Recipe recipeToEdit = recipeService.findById(id).orElseThrow();
+
+        recipeToEdit.setTitle(recipe.getTitle());
+        recipeToEdit.setIntroduction(recipe.getIntroduction());
+        recipeToEdit.setPrepTime(recipe.getPrepTime());
+        recipeToEdit.setNumberOfServings(recipe.getNumberOfServings());
+        recipeToEdit.setCategory(recipe.getCategory());
+        recipeToEdit.setDescription(recipe.getDescription());
+        recipeToEdit.setFavourite(recipe.isFavourite());
+
+        recipeService.saveRecipe(recipeToEdit);
+        return "redirect:/recipe/" + recipeToEdit.getId();
+    }
+
+    @GetMapping("/recipe/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        recipeService.deleteRecipeById(id);
+        return "redirect:/";
+    }
 }

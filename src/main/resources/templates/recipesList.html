@@ -8,9 +8,7 @@
     <br>
     <a class="btn btn-primary" href="/" role="button">Wróć na stronę główną</a>
     <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>
-
     <h1 style="text-align: center" class="mt-4" >WSZYSTKIE PRZEPISY</h1>
-
     <ul class="nav nav-tabs" >
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/recipe">WSZYSTKIE</a>
@@ -19,7 +17,6 @@
             <a class="nav-link" aria-current="page" th:href="|/recipe/?category=${category.name()}|" th:text="${category.getDisplayName()}"></a>
         </li>
     </ul>
-
     <table class="table">
         <thead>
         <tr>
@@ -42,7 +39,6 @@
         </tr>
         </tbody>
     </table>
-
 </div>
 </body>
 </html>

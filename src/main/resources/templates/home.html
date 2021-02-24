@@ -8,10 +8,12 @@
     <br>
     <a class="btn btn-primary" href="/recipe" role="button">Zobacz wszystkie przepisy</a>
     <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>
+    <a class="btn btn-primary" href="/recipe/listIngredients" role="button">Lista wszystkich składników</a>
 
     <h1 style="text-align: center" class="mt-4" >MOJE ULUBIONE PRZEPISY</h1>
 
     <div class="card" th:each="recipe: ${recipesList}">
+
         <h5 class="card-header" th:text="${recipe.title}"></h5>
         <div class="card-body">
             <h5 class="card-title" th:text="${recipe.introduction}"></h5>

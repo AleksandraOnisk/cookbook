@@ -8,7 +8,6 @@ public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
 
     @ManyToOne
@@ -36,10 +35,5 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 }

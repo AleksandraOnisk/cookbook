@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/recipe" role="button">Powrót do wszystkich przepisów</a><br>
+
+    <form th:action="|/recipe/${recipe.id}/addIngredients|" method="post" th:object="${recipe}">
+
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Składnik</label>
+            <input type="text" min="0" class="form-control" id="name" aria-describedby="inputGroupPrepend2" required th:field="*{ingredient}"><br>
+            <button type="submit" class="btn btn-primary mb-3" th:href="|/recipe/${recipe.id}/addIngredients|">Dodaj składnik do przepisu</button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

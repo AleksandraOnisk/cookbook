@@ -7,28 +7,23 @@
 <div class="content">
     <br>
     <a class="btn btn-primary" href="/recipe" role="button">Powrót do wszystkich przepisów</a>
-
     <h2>Edytowanie przepisu</h2>
     <br>
     <form th:href="|/recipe/${recipeToEdit.id}|" method="post" th:object="${recipeToEdit}">
-
         <div class="mb-3">
             <label for="title" class="form-label">Tytuł przepisu</label>
             <input type="text" class="form-control" id="title"  aria-describedby="inputGroupPrepend2" required th:field="*{title}">
         </div>
-
         <div class="mb-3">
             <label for="introduction" class="form-label">Podsumowanie</label>
             <input type="text" class="form-control" id="introduction" aria-describedby="inputGroupPrepend2" required
                    th:field="*{introduction}">
         </div>
-
         <div class="mb-3">
             <label for="prepTime" class="form-label">Czas przygotowania</label>
             <input type="number" min="0" class="form-control" id="prepTime" aria-describedby="inputGroupPrepend2" required
                    th:field="*{prepTime}">
         </div>
-
         <div class="mb-3">
             <label for="numberOfServings" class="form-label">Ilość porcji</label>
             <input type="number" min="0" class="form-control" id="numberOfServings" aria-describedby="inputGroupPrepend2" required
@@ -46,28 +41,18 @@
                         </option>
                 </select>
         </div>
-
-        <div class="mb-3">
-            <label for="ingredients" class="form-label">Składniki</label>
-            <textarea class="form-control" id="ingredients" aria-describedby="inputGroupPrepend2" required th:field="*{ingredient}" ></textarea>
-        </div>
-
         <div class="mb-3">
             <label for="description" class="form-label">Przygotowanie</label>
             <textarea class="form-control" id="description" aria-describedby="inputGroupPrepend2" required th:field="*{description}" ></textarea>
         </div>
-
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" th:field="*{favourite}">
             <label class="form-check-label" for="flexSwitchCheckChecked">Dodaj do ulubionych</label>
         </div>
-
         <div class="mb-3">
-            <button type="submit" class="btn btn-primary mb-3">Dodaj</button>
+            <button type="submit" class="btn btn-primary mb-3">Zapisz</button>
         </div>
-
     </form>
-
 </div>
 </body>
 </html>
