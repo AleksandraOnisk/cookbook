@@ -23,8 +23,6 @@
     <span th:text="${recipe.category.displayName}"> </span><br/><br/>
 
     <b>Składniki :</b><br/>
-
-    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/addIngredients|" role="button">Składniki</a> <br>
     <span th:each="ingredient : ${recipe.ingredient}" th:text="|${ingredient.name}, |"> </span><br/><br/>
 
     <b>Przygotowanie :</b><br/>

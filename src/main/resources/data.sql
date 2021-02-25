@@ -5,7 +5,6 @@ VALUES
 (3, 'Kurczak z rożna', 'Szybki obiad', 60, 5, 'DINNER', 'Kurczaka natrzeć mieszanka przyraw i piec w piekarniku ok 1h. ', 'FALSE'),
 (4, 'Brownie z malinami', 'Bezglutenowy deser, idealny do kawy', 90, 24, 'DESSERT', 'Gorzką czekoladę rozpuścić w maśle,dodać cukier, następnie ostudzić i dodać do mąki. Na wierzch ułozyć świeże maliny. Piec 30 minut w temp. 200st', 'TRUE');
 
-
 INSERT INTO ingredient (id, name, recipe_id)
 VALUES
 (1, 'jajka', 1),

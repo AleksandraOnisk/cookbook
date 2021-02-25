@@ -7,17 +7,24 @@
 <div class="content">
     <br>
     <a class="btn btn-primary" href="/recipe" role="button">Powrót do wszystkich przepisów</a><br>
-
-    <form th:action="|/recipe/${recipe.id}/addIngredients|" method="post" th:object="${recipe}">
-
-
-        <div class="mb-3">
-            <label for="name" class="form-label">Składnik</label>
-            <input type="text" min="0" class="form-control" id="name" aria-describedby="inputGroupPrepend2" required th:field="*{ingredient}"><br>
-            <button type="submit" class="btn btn-primary mb-3" th:href="|/recipe/${recipe.id}/addIngredients|">Dodaj składnik do przepisu</button>
-        </div>
-    </form>
-
+    <h2>Lista składników</h2>
+    <br>
+    <div class="contentText">
+        <h2 class="mt-4" style="text-align: center"> Dodaj nowy składnik </h2>
+        <form th:action="|/addIngredients|" method="post" th:object="${ingredient}">
+            <div class="mb-3">
+                <label for="title" class="form-label">Name</label>
+                <input type="text" required class="form-control" id="title" th:field="*{name}">
+            </div>
+            <select th:field="*{recipe}">
+                <option th:each="recipe: ${recipes}" th:text="${recipe.title}" th:value="${recipe.id}"></option>
+            </select>
+            <p></p>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary mb-3">Dodaj</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

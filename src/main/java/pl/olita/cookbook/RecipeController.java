@@ -70,26 +70,18 @@ public class RecipeController {
             return "redirect:/";
         }
     }
-
-    @GetMapping("/recipe/{id}/addIngredients")
-    public String addIngredientsForm(@PathVariable Long id, Model model) {
-        Optional<Recipe> byId = recipeService.findById(id);
-        if (byId.isPresent()) {
-            Recipe recipe = byId.get();
-            List<Ingredient> ingredients = recipeService.findAllIngredients();  // do zmiany to będzie
-            model.addAttribute("recipe", recipe);
-            model.addAttribute("ingredients", ingredients);
-            return "addIngredients";
-        } else {
-            return "redirect:/";
-        }
+    @GetMapping("/addIngredients")
+    public String addIngredientForm(Model model, @RequestParam(required = false, defaultValue = "1") Long Id) {
+        Ingredient ingredient = new Ingredient();
+        ingredient.setRecipe(recipeService.findById(Id).orElse(null));
+        model.addAttribute("ingredient", ingredient);
+        model.addAttribute("recipes", recipeService.findAllRecipe());
+        return "addIngredients";
     }
 
-    @PostMapping("/recipe/{id}/addIngredients")
-    public String addIngredientsToRecipe(@PathVariable Long id, Ingredient ingredient) {
-        Ingredient newIngredient = new Ingredient();
-        newIngredient.setRecipe(recipeService.findById(id).orElse(null));
-        recipeService.saveIngredient(newIngredient);
+    @PostMapping("/addIngredients")
+    public String addIngredient(Ingredient ingredient) {
+        recipeService.saveIngredient(ingredient);
         return "redirect:/recipe/" + ingredient.getRecipe().getId();
     }
 
