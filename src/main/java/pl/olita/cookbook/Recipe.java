@@ -1,10 +1,17 @@
 package pl.olita.cookbook;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +31,7 @@ public class Recipe {
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients = new ArrayList<>();
-    private boolean favourite;
+    private long likes;
 
     public Long getId() {
         return id;
@@ -82,19 +89,19 @@ public class Recipe {
         this.description = description;
     }
 
-    public List<Ingredient> getIngredient() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredient(List<Ingredient> ingredient) {
-        this.ingredients = ingredient;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
-    public boolean isFavourite() {
-        return favourite;
+    public long getLikes() {
+        return likes;
     }
 
-    public void setFavourite(boolean favourite) {
-        this.favourite = favourite;
+    public void setLikes(long likes) {
+        this.likes = likes;
     }
 }

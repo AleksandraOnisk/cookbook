@@ -1,8 +1,17 @@
 package pl.olita.cookbook;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.Optional;
+
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Ingredient {
 
     @Id
@@ -35,5 +44,9 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public void setRecipe(Optional<Recipe> byId) {
+        return;
     }
 }

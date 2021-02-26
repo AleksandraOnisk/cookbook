@@ -23,15 +23,19 @@
     <span th:text="${recipe.category.displayName}"> </span><br/><br/>
 
     <b>Składniki :</b><br/>
-    <span th:each="ingredient : ${recipe.ingredient}" th:text="|${ingredient.name}, |"> </span><br/><br/>
+    <a class="btn btn-primary" href="/addIngredients" role="button">Dodaj składnik</a><br>
+    <span th:each="ingredient : ${recipe.ingredients}" th:text="|${ingredient.name}, |"> </span><br/><br/>
 
     <b>Przygotowanie :</b><br/>
     <td>
         <span th:text="${recipe.description}"> </span><br/><br/>
     </td>
+    <b>Ilośc lajków :</b><br/>
+    <td>
+        <span th:text="${recipe.likes}"> </span><br/><br/><br>
+        <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/addLike|" role="button">Lubię to!</a>
 
-    <b>Ulubione?  :</b><br/>
-    <span th:text="${recipe.isFavourite}"> </span><br/><br/>
+    </td>
 
     <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/edit|" role="button">Edytuj przepis</a>
     <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/delete|" role="button">Usuń przepis</a>

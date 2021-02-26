@@ -24,7 +24,7 @@
             <th scope="col">Tytuł przepisu</th>
             <th scope="col">Czas przygotowania</th>
             <th scope="col">Ilość porcji</th>
-            <th scope="col">Ulubione?</th>
+            <th scope="col">Ilośc polubień</th>
         </tr>
         </thead>
         <tbody>
@@ -33,9 +33,12 @@
             <td>
                 <a th:href="|/recipe/${recipe.id}|" th:text="|${recipe.title}|"> </a>
             </td>
-            <td th:text="|${recipe.getPrepTime()} min|"></td>
-            <td th:text="|${recipe.getNumberOfServings()}|"></td>
-            <td th:text="|${recipe.isFavourite()}|"></td>
+            <td th:text="|${recipe.prepTime} min|"></td>
+            <td th:text="|${recipe.numberOfServings}|"></td>
+            <td>
+                <span th:text="${recipe.likes}">  </span>
+            </td>
+            </td>
         </tr>
         </tbody>
     </table>

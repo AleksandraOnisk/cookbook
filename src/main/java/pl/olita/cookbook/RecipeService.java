@@ -1,7 +1,11 @@
 package pl.olita.cookbook;
 
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,10 +18,6 @@ public class RecipeService {
     public RecipeService(RecipeRepository recipeRepository, IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
-    }
-
-    public List<Recipe> findByFavouriteTrue() {
-        return recipeRepository.findByFavouriteTrue();
     }
 
     public List<Recipe> findByCategoryOrderByTitleAsc(Category category) {
@@ -46,5 +46,15 @@ public class RecipeService {
 
     public void deleteRecipeById(Long id) {
         recipeRepository.deleteById(id);
+    }
+
+    @Query("UPDATE Recipe recipe SET recipe.likes = recipe.likes + 1 WHERE recipe.id = :id")
+    @Modifying
+    @Transactional
+    public void addLike(@Param("id") Long id) {
+    }
+
+    public List<Recipe> find3MostLikes() {
+        return recipeRepository.findTop3ByOrderByLikesDesc();
     }
 }

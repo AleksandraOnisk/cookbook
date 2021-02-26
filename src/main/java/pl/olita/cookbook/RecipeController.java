@@ -22,7 +22,7 @@ public class RecipeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        recipesList = recipeService.findByFavouriteTrue();
+        recipesList = recipeService.find3MostLikes();
         model.addAttribute("recipesList", recipesList);
         return "home";
     }
@@ -61,22 +61,31 @@ public class RecipeController {
     @GetMapping("/recipe/{id}")
     public String showRecipe(@PathVariable Long id, Model model) {
         Optional<Recipe> recipeOptional = recipeService.findById(id);
-
         if (recipeOptional.isPresent()) {
-            Recipe recipe = recipeOptional.get();
-            model.addAttribute("recipe", recipe);
+            model.addAttribute("recipe", recipeOptional.get());
             return "recipe";
         } else {
-            return "redirect:/";
+            return "error";
         }
     }
+
+    @GetMapping("/recipe/{id}/addLike")
+    String addLike(@PathVariable Long id) {
+        recipeService.addLike(id);
+        return "redirect:/recipe/" + id;
+    }
+
     @GetMapping("/addIngredients")
     public String addIngredientForm(Model model, @RequestParam(required = false, defaultValue = "1") Long Id) {
         Ingredient ingredient = new Ingredient();
-        ingredient.setRecipe(recipeService.findById(Id).orElse(null));
-        model.addAttribute("ingredient", ingredient);
-        model.addAttribute("recipes", recipeService.findAllRecipe());
-        return "addIngredients";
+        ingredient.setRecipe(recipeService.findById(Id));
+        if (recipeService.findById(Id).isPresent()) {
+            model.addAttribute("ingredient", ingredient);
+            model.addAttribute("recipes", recipeService.findAllRecipe());
+            return "addIngredients";
+        }
+        return "error";
+
     }
 
     @PostMapping("/addIngredients")
@@ -108,8 +117,6 @@ public class RecipeController {
         recipeToEdit.setNumberOfServings(recipe.getNumberOfServings());
         recipeToEdit.setCategory(recipe.getCategory());
         recipeToEdit.setDescription(recipe.getDescription());
-        recipeToEdit.setFavourite(recipe.isFavourite());
-
         recipeService.saveRecipe(recipeToEdit);
         return "redirect:/recipe/" + recipeToEdit.getId();
     }

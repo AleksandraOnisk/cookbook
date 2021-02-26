@@ -8,5 +8,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> findByCategoryOrderByTitleAsc(Category category);
 
-    List<Recipe> findByFavouriteTrue();
+    List<Recipe> findTop3ByOrderByLikesDesc();
 }
