@@ -48,13 +48,11 @@ public class RecipeService {
         recipeRepository.deleteById(id);
     }
 
-    @Query("UPDATE Recipe recipe SET recipe.likes = recipe.likes + 1 WHERE recipe.id = :id")
-    @Modifying
-    @Transactional
-    public void addLike(@Param("id") Long id) {
-    }
-
     public List<Recipe> find3MostLikes() {
         return recipeRepository.findTop3ByOrderByLikesDesc();
+    }
+
+    public void addLike(Long id) {
+        recipeRepository.addLike(id);
     }
 }
