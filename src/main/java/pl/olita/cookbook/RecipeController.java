@@ -14,7 +14,6 @@ import java.util.Optional;
 public class RecipeController {
 
     private RecipeService recipeService;
-    private List<Recipe> recipesList;
 
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
@@ -22,6 +21,7 @@ public class RecipeController {
 
     @GetMapping("/")
     public String home(Model model) {
+        List<Recipe> recipesList;
         recipesList = recipeService.find3MostLikes();
         model.addAttribute("recipesList", recipesList);
         return "home";
@@ -29,6 +29,7 @@ public class RecipeController {
 
     @GetMapping("/recipe")
     public String recipesList(Model model, @RequestParam(required = false) Category category) {
+        List<Recipe> recipesList;
         if (category != null) {
             recipesList = recipeService.findByCategoryOrderByTitleAsc(category);
         } else {
@@ -109,16 +110,8 @@ public class RecipeController {
 
     @PostMapping("/recipe/{id}/edit")
     public String editRecipe(@PathVariable Long id, Recipe recipe) {
-        Recipe recipeToEdit = recipeService.findById(id).orElseThrow();
-
-        recipeToEdit.setTitle(recipe.getTitle());
-        recipeToEdit.setIntroduction(recipe.getIntroduction());
-        recipeToEdit.setPrepTime(recipe.getPrepTime());
-        recipeToEdit.setNumberOfServings(recipe.getNumberOfServings());
-        recipeToEdit.setCategory(recipe.getCategory());
-        recipeToEdit.setDescription(recipe.getDescription());
-        recipeService.saveRecipe(recipeToEdit);
-        return "redirect:/recipe/" + recipeToEdit.getId();
+        recipeService.saveEditedRecipe(recipe, id);
+        return "redirect:/recipe/" + recipe.getId();
     }
 
     @GetMapping("/recipe/{id}/delete")

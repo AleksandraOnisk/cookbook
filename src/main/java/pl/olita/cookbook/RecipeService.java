@@ -1,11 +1,7 @@
 package pl.olita.cookbook;
 
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,5 +50,16 @@ public class RecipeService {
 
     public void addLike(Long id) {
         recipeRepository.addLike(id);
+    }
+
+    public Recipe saveEditedRecipe(Recipe recipe, Long id) {
+        Recipe recipeToEdit = recipeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Recipe with id " + id + " not found"));
+        recipeToEdit.setTitle(recipe.getTitle());
+        recipeToEdit.setIntroduction(recipe.getIntroduction());
+        recipeToEdit.setPrepTime(recipe.getPrepTime());
+        recipeToEdit.setNumberOfServings(recipe.getNumberOfServings());
+        recipeToEdit.setCategory(recipe.getCategory());
+        recipeToEdit.setDescription(recipe.getDescription());
+        return recipeRepository.save(recipeToEdit);
     }
 }
