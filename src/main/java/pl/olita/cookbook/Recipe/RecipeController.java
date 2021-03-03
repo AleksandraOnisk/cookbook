@@ -1,4 +1,4 @@
-package pl.olita.cookbook;
+package pl.olita.cookbook.Recipe;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.olita.cookbook.Category.Category;
+import pl.olita.cookbook.Ingredient.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -52,13 +54,6 @@ public class RecipeController {
         return "redirect:/recipe";
     }
 
-    @GetMapping("/recipe/listIngredients")
-    public String showIngredients(Model model) {
-        List<Ingredient> ingredients = recipeService.findAllIngredients();
-        model.addAttribute("ingredients", ingredients);
-        return "listIngredients";
-    }
-
     @GetMapping("/recipe/{id}")
     public String showRecipe(@PathVariable Long id, Model model) {
         Optional<Recipe> recipeOptional = recipeService.findById(id);
@@ -88,20 +83,13 @@ public class RecipeController {
         return "error";
 
     }
-
-    @PostMapping("/addIngredients")
-    public String addIngredient(Ingredient ingredient) {
-        recipeService.saveIngredient(ingredient);
-        return "redirect:/recipe/" + ingredient.getRecipe().getId();
-    }
-
     @GetMapping("/recipe/{id}/edit")
     public String showRecipeEditForm(@PathVariable Long id, Model model) {
         Optional<Recipe> recipeOptional = recipeService.findById(id);
         if (recipeOptional.isPresent()) {
             Recipe recipe = recipeOptional.get();
             model.addAttribute("recipeToEdit", recipe);
-            model.addAttribute("ingredients", recipeService.findAllIngredients());
+            model.addAttribute("ingredients", recipe.findAllIngredients());
             return "recipeEdit";
         } else {
             return "redirect:/";

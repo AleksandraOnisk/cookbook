@@ -1,9 +1,9 @@
-package pl.olita.cookbook;
+package pl.olita.cookbook.Ingredient;
 
 import org.springframework.stereotype.Service;
+import pl.olita.cookbook.Recipe.RecipeRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class IngredientService {
@@ -14,10 +14,6 @@ public class IngredientService {
     public IngredientService(RecipeRepository recipeRepository, IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
-    }
-
-    public List<Recipe> findByCategoryOrderByTitleAsc(Category category) {
-        return recipeRepository.findByCategoryOrderByTitleAsc(category);
     }
 
     public List<Ingredient> findAllIngredients() {

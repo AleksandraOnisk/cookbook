@@ -1,6 +1,8 @@
-package pl.olita.cookbook;
+package pl.olita.cookbook.Recipe;
 
 import org.springframework.stereotype.Service;
+import pl.olita.cookbook.Category.Category;
+import pl.olita.cookbook.Ingredient.IngredientRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,14 +32,6 @@ public class RecipeService {
 
     public Optional<Recipe> findById(Long id) {
         return recipeRepository.findById(id);
-    }
-
-    public List<Ingredient> findAllIngredients() {
-        return ingredientRepository.findAll();
-    }
-
-    public Ingredient saveIngredient(Ingredient ingredient) {
-        return ingredientRepository.save(ingredient);
     }
 
     public void deleteRecipeById(Long id) {

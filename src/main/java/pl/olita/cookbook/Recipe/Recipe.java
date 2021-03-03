@@ -1,8 +1,10 @@
-package pl.olita.cookbook;
+package pl.olita.cookbook.Recipe;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.olita.cookbook.Category.Category;
+import pl.olita.cookbook.Ingredient.Ingredient;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,11 +21,7 @@ public class Recipe {
     private Long id;
     private String title;
     private String introduction;
-
-    @Column(name = "prep_time")
     private Integer prepTime;
-
-    @Column(name = "number_of_servings")
     private Integer numberOfServings;
 
     @Enumerated(EnumType.STRING)
@@ -104,5 +102,9 @@ public class Recipe {
 
     public void setLikes(long likes) {
         this.likes = likes;
+    }
+
+    public List<Ingredient> findAllIngredients() {
+        return ingredients;
     }
 }

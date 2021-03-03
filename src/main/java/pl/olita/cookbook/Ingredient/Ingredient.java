@@ -1,8 +1,9 @@
-package pl.olita.cookbook;
+package pl.olita.cookbook.Ingredient;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.olita.cookbook.Recipe.Recipe;
 
 import javax.persistence.*;
 import java.util.Optional;
