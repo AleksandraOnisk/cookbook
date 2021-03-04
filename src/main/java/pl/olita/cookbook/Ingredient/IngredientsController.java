@@ -10,7 +10,7 @@ import java.util.List;
 @Controller
 public class IngredientsController {
 
-    IngredientService ingredientService;
+    private IngredientService ingredientService;
 
     public IngredientsController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;

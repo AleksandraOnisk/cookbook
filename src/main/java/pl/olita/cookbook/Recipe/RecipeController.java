@@ -23,8 +23,7 @@ public class RecipeController {
 
     @GetMapping("/")
     public String home(Model model) {
-        List<Recipe> recipesList;
-        recipesList = recipeService.find3MostLikes();
+        List<Recipe> recipesList = recipeService.find3MostLikes();
         model.addAttribute("recipesList", recipesList);
         return "home";
     }
@@ -92,7 +91,7 @@ public class RecipeController {
             model.addAttribute("ingredients", recipe.findAllIngredients());
             return "recipeEdit";
         } else {
-            return "redirect:/";
+            return "error";
         }
     }
 
