@@ -47,7 +47,8 @@ public class RecipeService {
     }
 
     public Recipe saveEditedRecipe(Recipe recipe, Long id) {
-        Recipe recipeToEdit = recipeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Recipe with id " + id + " not found"));
+        Recipe recipeToEdit = recipeRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Recipe with id " + id + " not found"));
         recipeToEdit.setTitle(recipe.getTitle());
         recipeToEdit.setIntroduction(recipe.getIntroduction());
         recipeToEdit.setPrepTime(recipe.getPrepTime());
