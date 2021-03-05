@@ -1,4 +1,4 @@
-package pl.olita.cookbook.Ingredient;
+package pl.olita.cookbook.ingredient;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class IngredientsController {
     public String showIngredients(Model model) {
         List<Ingredient> ingredients = ingredientService.findAllIngredients();
         model.addAttribute("ingredients", ingredients);
-        return "listIngredients";
+        return "ingredient/listIngredients";
     }
 
     @PostMapping("/addIngredients")

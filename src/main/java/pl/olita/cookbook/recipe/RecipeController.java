@@ -1,4 +1,4 @@
-package pl.olita.cookbook.Recipe;
+package pl.olita.cookbook.recipe;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.olita.cookbook.Category.Category;
-import pl.olita.cookbook.Ingredient.Ingredient;
+import pl.olita.cookbook.category.Category;
+import pl.olita.cookbook.ingredient.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,14 +37,14 @@ public class RecipeController {
             recipesList = recipeService.findAllRecipe();
         }
         model.addAttribute("recipesList", recipesList);
-        return "recipesList";
+        return "recipe/recipesList";
     }
 
     @GetMapping("/recipe/add")
     public String addNewRecipeForm(Model model) {
         Recipe newRecipe = new Recipe();
         model.addAttribute("recipe", newRecipe);
-        return "recipeAdd";
+        return "recipe/recipeAdd";
     }
 
     @PostMapping("/recipe/add")
@@ -58,7 +58,7 @@ public class RecipeController {
         Optional<Recipe> recipeOptional = recipeService.findById(id);
         if (recipeOptional.isPresent()) {
             model.addAttribute("recipe", recipeOptional.get());
-            return "recipe";
+            return "recipe/recipe";
         } else {
             return "error";
         }
@@ -77,7 +77,7 @@ public class RecipeController {
         if (recipeService.findById(Id).isPresent()) {
             model.addAttribute("ingredient", ingredient);
             model.addAttribute("recipes", recipeService.findAllRecipe());
-            return "addIngredients";
+            return "ingredient/addIngredients";
         }
         return "error";
 
@@ -89,7 +89,7 @@ public class RecipeController {
             Recipe recipe = recipeOptional.get();
             model.addAttribute("recipeToEdit", recipe);
             model.addAttribute("ingredients", recipe.findAllIngredients());
-            return "recipeEdit";
+            return "recipe/recipeEdit";
         } else {
             return "error";
         }
