@@ -33,7 +33,7 @@
             <label for="category" class="form-label">Kategoria przepisu</label><br>
                 <select class="form-select" id="category" aria-describedby="inputGroupPrepend2" required th:field="*{category}">
                         <option selected value=""></option>
-                        <option th:each="category : ${T(pl.olita.cookbook.category).values()}"
+                        <option th:each="category : ${T(pl.olita.cookbook.category.Category).values()}"
                                 th:value="${category}"
                                 th:text="${category.getDisplayName()}">
                         </option>

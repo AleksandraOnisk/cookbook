@@ -13,7 +13,7 @@
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="/recipe">WSZYSTKIE</a>
         </li>
-        <li class="nav-item" th:each="category : ${T(pl.olita.cookbook.category).values()}">
+        <li class="nav-item" th:each="category : ${T(pl.olita.cookbook.category.Category).values()}">
             <a class="nav-link" aria-current="page" th:href="|/recipe/?category=${category.name()}|"
                th:text="${category.getDisplayName()}"></a>
         </li>
