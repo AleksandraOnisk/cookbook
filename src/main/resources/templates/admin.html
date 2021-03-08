@@ -11,7 +11,7 @@
 
     <ul>
         <li th:each="user: ${users}">
-            <span th:text="${user.username}"></span>
+            <span th:text="${user.email}"></span>
             <span>   </span>
             <a th:href="|/admin/deleteUser/${user.id}|">Usuń</a>
         </li>
