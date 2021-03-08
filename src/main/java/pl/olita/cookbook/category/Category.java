@@ -1,4 +1,4 @@
-package pl.olita.cookbook.Category;
+package pl.olita.cookbook.category;
 
 public enum Category {
 

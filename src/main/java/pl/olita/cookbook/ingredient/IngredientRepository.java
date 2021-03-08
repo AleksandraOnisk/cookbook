@@ -1,4 +1,4 @@
-package pl.olita.cookbook.Ingredient;
+package pl.olita.cookbook.ingredient;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

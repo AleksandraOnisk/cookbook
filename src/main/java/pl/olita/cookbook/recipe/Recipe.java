@@ -1,10 +1,10 @@
-package pl.olita.cookbook.Recipe;
+package pl.olita.cookbook.recipe;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.olita.cookbook.Category.Category;
-import pl.olita.cookbook.Ingredient.Ingredient;
+import pl.olita.cookbook.category.Category;
+import pl.olita.cookbook.ingredient.Ingredient;
 
 import javax.persistence.*;
 import java.util.ArrayList;

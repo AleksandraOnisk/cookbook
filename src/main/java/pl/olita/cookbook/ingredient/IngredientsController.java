@@ -1,4 +1,4 @@
-package pl.olita.cookbook.Ingredient;
+package pl.olita.cookbook.ingredient;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

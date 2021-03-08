@@ -23,6 +23,4 @@ VALUES (1, 'jajka', 1),
        (9, 'mieszanka przypraw', 3),
        (10, 'świeże maliny', 4),
        (11, 'gorzka czekolada', 4),
-(12,'mąka bezglutenowa', 4)
-;
-
+       (12, 'mąka bezglutenowa', 4);

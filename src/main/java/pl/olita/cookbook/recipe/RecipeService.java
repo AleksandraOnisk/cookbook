@@ -1,8 +1,8 @@
-package pl.olita.cookbook.Recipe;
+package pl.olita.cookbook.recipe;
 
 import org.springframework.stereotype.Service;
-import pl.olita.cookbook.Category.Category;
-import pl.olita.cookbook.Ingredient.IngredientRepository;
+import pl.olita.cookbook.category.Category;
+import pl.olita.cookbook.ingredient.IngredientRepository;
 
 import java.util.List;
 import java.util.Optional;
