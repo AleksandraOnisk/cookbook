@@ -15,16 +15,19 @@ import java.util.stream.Collectors;
 @Service
 public class UserService {
 
+    private static final String DEFAULT_ROLE = "ROLE_USER";
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final MailSenderService mailSenderService;
+    private final UserRoleRepository userRoleRepository;
 
     public UserService(PasswordEncoder passwordEncoder,
                        UserRepository userRepository,
-                       MailSenderService mailSenderService) {
+                       MailSenderService mailSenderService, UserRoleRepository userRoleRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.mailSenderService = mailSenderService;
+        this.userRoleRepository = userRoleRepository;
     }
 
 

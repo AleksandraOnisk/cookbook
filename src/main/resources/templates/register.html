@@ -14,27 +14,26 @@
         <div class="mb-3 row">
             <label for="firstName" class="col-sm-3 col-form-label">Imię</label>
             <div class="col-sm-3">
-                <input th:field="*{firstName}" type="text" class="form-control" id="firstName">
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName" required>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="lastName" class="col-sm-3 col-form-label">Nazwisko</label>
             <div class="col-sm-3">
-                <input th:field="*{lastName}" type="text" class="form-control" id="lastName">
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName" required>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-3 col-form-label">Mail</label>
             <div class="col-sm-3">
-                <input th:field="*{email}" type="text" class="form-control" id="staticEmail"
-                       placeholder="email@poczta.com">
+                <input th:field="*{email}" type="email" class="form-control" id="staticEmail"
+                       placeholder="email@poczta.com" required>
             </div>
         </div>
         <div class="mb-3 row">
             <label for="inputPassword" class="col-sm-3 col-form-label">Hasło</label>
-            <p th:errors="*{password}">Password errors</p>
             <div class="col-sm-3">
-                <input th:field="*{password}" type="text" class="form-control" id="inputPassword">
+                <input th:field="*{password}" type="text" class="form-control" id="inputPassword" required>
             </div>
         </div>
         <div class="d-grid gap-2 col-14 mx-auto">

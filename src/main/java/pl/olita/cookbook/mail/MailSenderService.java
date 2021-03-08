@@ -11,9 +11,7 @@ import javax.mail.internet.MimeMessage;
 public class MailSenderService {
 
     private static final String DOMAIN_OWNER_EMAIL = "olitacookbook@gmail.com";
-
     private JavaMailSender javaMailSender;
-
     public MailSenderService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
@@ -58,16 +56,12 @@ public class MailSenderService {
     public void sendPasswordResetLink(String email, String key) throws MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
-
         mimeMessageHelper.setTo(email);
         mimeMessageHelper.setFrom(DOMAIN_OWNER_EMAIL);
         mimeMessageHelper.setSubject("Link do resetu hasła");
-
         String link = "<a href=\"http://localhost:8080/resetHasla?klucz=" + key + "\">TUTAJ</a>";
-
         String text = "<p>Cześć! Tutaj link do resetu hasła: + " + link + "</p>";
         mimeMessageHelper.setText(text, true);
-
         javaMailSender.send(mimeMessage);
     }
 }

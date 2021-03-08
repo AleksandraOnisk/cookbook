@@ -2,7 +2,9 @@ package pl.olita.cookbook.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -33,13 +35,18 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String register(User user) {
-        String firstName = user.getFirstName();
-        String lastName = user.getLastName();
-        String username = user.getEmail();
-        String rawPassword = user.getPassword();
-        userService.registerUser(firstName, lastName, username, rawPassword);
-        return "redirect:/";
+    public String addUser(@ModelAttribute User user,
+                          BindingResult bindResult) {
+        if (bindResult.hasErrors())
+            return "register";
+        else {
+            String firstName = user.getFirstName();
+            String lastName = user.getLastName();
+            String email = user.getEmail();
+            String rawPassword = user.getPassword();
+            userService.registerUser(firstName, lastName, email, rawPassword);
+            return "registerSuccess";
+        }
     }
 
     @GetMapping("/reset")
@@ -64,6 +71,4 @@ public class AuthController {
         userService.updateUserPassword(key, password);
         return "redirect:/login";
     }
-
-
 }

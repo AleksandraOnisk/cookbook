@@ -21,7 +21,6 @@ public class AdminController {
         this.userService = userService;
     }
 
-
     @GetMapping("")
     public String adminPanel(Model model) {
         List<User> users = userService.findAllWithoutCurrentUser();
