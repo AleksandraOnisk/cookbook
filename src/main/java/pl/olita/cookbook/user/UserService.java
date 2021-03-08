@@ -28,8 +28,10 @@ public class UserService {
     }
 
 
-    public void registerUser(String username, String rawPassword) {
+    public void registerUser(String firstName, String lastName, String username, String rawPassword) {
         User userToAdd = new User();
+        userToAdd.setFirstName(firstName);
+        userToAdd.setLastName(lastName);
         userToAdd.setEmail(username);
         String encryptedPassword = passwordEncoder.encode(rawPassword);
         userToAdd.setPassword(encryptedPassword);

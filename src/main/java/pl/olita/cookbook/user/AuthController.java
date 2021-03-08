@@ -34,9 +34,11 @@ public class AuthController {
 
     @PostMapping("/register")
     public String register(User user) {
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
         String username = user.getEmail();
         String rawPassword = user.getPassword();
-        userService.registerUser(username, rawPassword);
+        userService.registerUser(firstName, lastName, username, rawPassword);
         return "redirect:/";
     }
 

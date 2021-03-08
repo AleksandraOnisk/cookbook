@@ -11,10 +11,20 @@
     <br><br>
 
     <form action="#" method="post" th:action="@{/register}" th:object="${user}">
-
+        <div class="mb-3 row">
+            <label for="firstName" class="col-sm-3 col-form-label">Imię</label>
+            <div class="col-sm-3">
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName">
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="lastName" class="col-sm-3 col-form-label">Nazwisko</label>
+            <div class="col-sm-3">
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName">
+            </div>
+        </div>
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-3 col-form-label">Mail</label>
-            <p th:errors="*{email}">Email errors</p>
             <div class="col-sm-3">
                 <input th:field="*{email}" type="text" class="form-control" id="staticEmail"
                        placeholder="email@poczta.com">
