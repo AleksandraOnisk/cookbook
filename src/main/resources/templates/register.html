@@ -14,9 +14,9 @@
 
         <div class="mb-3 row">
             <label for="staticEmail" class="col-sm-3 col-form-label">Mail</label>
-            <p th:errors="*{username}">Email errors</p>
+            <p th:errors="*{email}">Email errors</p>
             <div class="col-sm-3">
-                <input th:field="*{username}" type="text" class="form-control" id="staticEmail"
+                <input th:field="*{email}" type="text" class="form-control" id="staticEmail"
                        placeholder="email@poczta.com">
             </div>
         </div>

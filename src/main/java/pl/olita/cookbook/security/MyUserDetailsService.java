@@ -24,17 +24,17 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Transactional
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Optional<User> userOptional = userRepository.findByUsername(username);
+        Optional<User> userOptional = userRepository.findByEmail(email);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             Set<SimpleGrantedAuthority> roles = user.getRoles()
                     .stream()
                     .map(userRole -> new SimpleGrantedAuthority(userRole.getRole().name()))
                     .collect(Collectors.toSet());
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), roles);
+            return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), roles);
         }
-        throw new UsernameNotFoundException("Username " + username + "not found");
+        throw new UsernameNotFoundException("Username " + email + "not found");
     }
 }

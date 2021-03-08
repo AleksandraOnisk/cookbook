@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+
+    <h1 style="text-align: left" class="mt-4">Panel admina</h1> <br>
+    <h3>Lista użytkowników: </h3>
+
+    <ul>
+        <li th:each="user: ${users}">
+            <span th:text="${user.username}"></span>
+            <span>   </span>
+            <a th:href="|/admin/deleteUser/${user.id}|">Usuń</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -25,8 +25,8 @@ VALUES (1, 'jajka', 1),
        (11, 'gorzka czekolada', 4),
        (12, 'mąka bezglutenowa', 4);
 
-INSERT INTO user (password, username)
-VALUES ('{noop}Password1!', 'olita@wp.pl'),
+INSERT INTO user (password, email)
+VALUES ('{noop}Password1!', 'aleksandra.siciarz@gmail.com'),
        ('{noop}Password1!', 'karol@wp.pl'),
        ('{noop}Password1!', 'magdalena@wp.pl');
 
