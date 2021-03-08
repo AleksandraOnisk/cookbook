@@ -24,3 +24,14 @@ VALUES (1, 'jajka', 1),
        (10, 'świeże maliny', 4),
        (11, 'gorzka czekolada', 4),
        (12, 'mąka bezglutenowa', 4);
+
+INSERT INTO user (password, username)
+VALUES ('{noop}Password1!', 'olita@wp.pl'),
+       ('{noop}Password1!', 'karol@wp.pl'),
+       ('{noop}Password1!', 'magdalena@wp.pl');
+
+INSERT INTO user_role (user_id, role)
+VALUES (1, 'ROLE_ADMIN'),
+       (1, 'ROLE_USER'),
+       (2, 'ROLE_USER'),
+       (3, 'ROLE_USER');
