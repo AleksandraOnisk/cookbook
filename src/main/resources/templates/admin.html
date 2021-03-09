@@ -8,15 +8,34 @@
 
     <h1 style="text-align: left" class="mt-4">Panel admina</h1> <br>
     <h3>Lista użytkowników: </h3>
-
-    <ul>
-        <li th:each="user: ${users}">
-            <span th:text="${user.email}"></span>
-            <span>   </span>
-
-            <a th:href="|/admin/deleteUser/${user.id}|">Usuń</a>
-        </li>
-    </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Rola</th>
+            <th scope="col">Dodaj rolę</th>
+            <th scope="col">Usuń</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iter : ${usersList}">
+            <th scope="row" th:text="${iter.count}"> 1</th>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:each="role : ${user.roles}" th:text="|${role.getRole()}, |"></td>
+            <td>
+                <a class="btn btn-primary">Dodaj rolę</a>
+            </td>
+            <td>
+                <a th:href="|/admin/deleteUser/${user.id}|" class="btn btn-primary">Usuń</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

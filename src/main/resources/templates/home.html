@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:include="fragments :: head">
 </head>
 <body>
 <div th:replace="fragments :: header"></div>
 <div class="content">
     <br>
-    <a class="btn btn-primary" href="/login" role="button">Zaloguj się</a>
     <a class="btn btn-primary" href="/register" role="button">Zarejestruj się</a>
+    <a class="btn btn-primary" href="/login" role="button">Zaloguj się</a>
+    <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary" href="/admin" role="button"> Panel admina</a>
+    <a sec:authorize="hasRole('USER')" class="btn btn-primary" role="button"> Panel użytkownika</a>
+    <span sec:authorize="isAuthenticated()">
+        <a class="btn btn-primary" href="/logout" role="button"> Wyloguj się</a>
+    </span>
+
     <br><br>
     <a class="btn btn-primary" href="/recipe" role="button">Zobacz wszystkie przepisy</a>
     <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>

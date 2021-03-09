@@ -25,10 +25,10 @@ VALUES (1, 'jajka', 1),
        (11, 'gorzka czekolada', 4),
        (12, 'mąka bezglutenowa', 4);
 
-INSERT INTO user (first_name, last_name, password, email)
-VALUES ('Aleksandra', 'Onisk', '{noop}Password1!', 'aleksandra.siciarz@gmail.com'),
-       ('Karol', 'Wielki', '{noop}Password1!', 'karol@wp.pl'),
-       ('Magdalena', 'Mała', '{noop}Password1!', 'magdalena@wp.pl');
+INSERT INTO user (id, first_name, last_name, password, email)
+VALUES (1, 'Aleksandra', 'Onisk', '{noop}Password1!', 'aleksandra.siciarz@gmail.com'),
+       (2, 'Karol', 'Wielki', '{noop}Password1!', 'karol@wp.pl'),
+       (3, 'Magdalena', 'Mała', '{noop}Password1!', 'magdalena@wp.pl');
 
 INSERT INTO user_role (user_id, role)
 VALUES (1, 'ROLE_ADMIN'),

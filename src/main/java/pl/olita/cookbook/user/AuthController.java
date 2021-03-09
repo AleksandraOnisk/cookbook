@@ -3,10 +3,10 @@ package pl.olita.cookbook.user;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import pl.olita.cookbook.recipe.Recipe;
+
+import java.util.Optional;
 
 @Controller
 public class AuthController {
@@ -70,5 +70,22 @@ public class AuthController {
     public String resetPasswordLinkSend(@RequestParam String key, @RequestParam String password) {
         userService.updateUserPassword(key, password);
         return "redirect:/login";
+    }
+
+    @GetMapping("/user/{id}")
+    public String showUserPanelForm(@PathVariable Long id, Model model) {
+        Optional<User> userOptional = userService.findById(id);
+        if (userOptional.isPresent()) {
+            model.addAttribute("userToEdit", userOptional.get());
+            return "userPanel";
+        } else {
+            return "error";
+        }
+    }
+
+    @PostMapping("/user/{id}")
+    public String editUser(@PathVariable Long id, User user) {
+        userService.saveEditedUser(user, id);
+        return "userPanel";
     }
 }

@@ -2,10 +2,8 @@ package pl.olita.cookbook.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import pl.olita.cookbook.ingredient.Ingredient;
 import pl.olita.cookbook.user.User;
 import pl.olita.cookbook.user.UserService;
 
@@ -23,8 +21,8 @@ public class AdminController {
 
     @GetMapping("")
     public String adminPanel(Model model) {
-        List<User> users = userService.findAllWithoutCurrentUser();
-        model.addAttribute("users", users);
+        List<User> usersList = userService.findAllWithoutCurrentUser();
+        model.addAttribute("usersList", usersList);
         return "admin";
     }
 
@@ -33,4 +31,5 @@ public class AdminController {
         userService.deleteUserById(id);
         return "redirect:/admin";
     }
+
 }
