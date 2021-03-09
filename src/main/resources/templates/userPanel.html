@@ -26,6 +26,11 @@
                    th:field="*{lastName}">
         </div>
         <div class="mb-3">
+            <label for="password" class="form-label">Hasło</label>
+            <input type="text" class="form-control" id="password" aria-describedby="inputGroupPrepend2" required
+                   th:field="*{password}">
+        </div>
+        <div class="mb-3">
             <button type="submit" class="btn btn-primary mb-3">Zapisz</button>
         </div>
     </form>

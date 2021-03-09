@@ -81,7 +81,6 @@ public class AuthController {
         } else {
             return "error";
         }
-
     }
 
     @PostMapping("/user/{id}")
