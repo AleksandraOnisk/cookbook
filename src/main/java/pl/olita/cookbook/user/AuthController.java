@@ -86,6 +86,6 @@ public class AuthController {
     @PostMapping("/user/{id}")
     public String editUser(@PathVariable Long id, User user) {
         userService.saveEditedUser(user, id);
-        return "redirect:/";
+        return "editUserSuccess";
     }
 }
