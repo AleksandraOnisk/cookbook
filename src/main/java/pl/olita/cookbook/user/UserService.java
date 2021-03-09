@@ -88,6 +88,7 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("Użytkownik o id " + id + " nie znaleziony"));
         userToEdit.setFirstName(user.getFirstName());
         userToEdit.setLastName(user.getLastName());
+        userToEdit.setPassword(user.getPassword());
         return userRepository.save(userToEdit);
     }
 }

@@ -28,10 +28,15 @@ VALUES (1, 'jajka', 1),
 INSERT INTO user (id, first_name, last_name, password, email)
 VALUES (1, 'Aleksandra', 'Onisk', '{noop}Password1!', 'aleksandra.siciarz@gmail.com'),
        (2, 'Karol', 'Wielki', '{noop}Password1!', 'karol@wp.pl'),
-       (3, 'Magdalena', 'Mała', '{noop}Password1!', 'magdalena@wp.pl');
+       (3, 'Anna', 'Mucha', '{noop}xxx', 'xxx@wp.pl'),
+       (4, 'Magdalena', 'Mała', '{noop}Password1!', 'magdalena@wp.pl'),
+       (5, 'Admin', 'Tylko', '{noop}admin', 'admin@wp.pl');
 
 INSERT INTO user_role (user_id, role)
 VALUES (1, 'ROLE_ADMIN'),
        (1, 'ROLE_USER'),
        (2, 'ROLE_USER'),
-       (3, 'ROLE_USER');
+       (2, 'ROLE_ADMIN'),
+       (3, 'ROLE_USER'),
+       (4, 'ROLE_USER'),
+       (5, 'ROLE_ADMIN');

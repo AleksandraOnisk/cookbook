@@ -7,7 +7,7 @@
 <div class="content">
     <br>
     <a class="btn btn-primary" href="/register" role="button">Zarejestruj się</a>
-    <a class="btn btn-primary" href="/login" role="button">Zaloguj się</a>
+    <a sec:authorize="!isAuthenticated" class="btn btn-primary" href="/login" role="button">Zaloguj się</a>
     <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary" href="/admin" role="button"> Panel admina</a>
     <a sec:authorize="hasRole('USER')" class="btn btn-primary" role="button"> Panel użytkownika</a>
     <span sec:authorize="isAuthenticated()">

@@ -7,12 +7,12 @@
 <div class="content">
     <br>
     <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a>
-    <h2>Edycja danych uzytkownika</h2>
+    <h2>Edycja danych użytkownika</h2>
     <br>
     <form th:href="|/user/${userToEdit.id}|" method="post" th:object="${userToEdit}">
         <div class="mb-3">
             <label for="email" class="form-label">Mail</label>
-            <input type="text" class="form-control" id="email" aria-describedby="inputGroupPrepend2" required
+            <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend2" required
                    th:field="*{email}">
         </div>
         <div class="mb-3">
