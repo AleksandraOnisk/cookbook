@@ -10,9 +10,13 @@
 
     <form th:action="@{/resetEnding}" method="post">
         <input type="hidden" name="key" th:value="${key}"/>
-        <p>Podaj nowe hasło</p>
-        <input type="text" name="password"/> <br/>
-        <input type="submit" value="Resetuj!"/>
+        <div class="mb-3">
+            <label>Podaj nowe hasło</label>
+            <input type="text" name="password" required>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Resetuj</button>
+        </div>
     </form>
 
 </div>

@@ -30,7 +30,7 @@ public class MailSenderService {
         mimeMessageHelper.setFrom(email);
         mimeMessageHelper.setSubject("Wiadomość z formularza kontaktowego");
         mimeMessageHelper.setReplyTo(email);
-        String text = "<p>Wiadomość od: " + email + "(" + email + ") </p>";
+        String text = "<p>Wiadomość od: " + username + "(" + email + ") </p>";
         text += "<p>Treść wiadomości: </p>";
         text += content;
         mimeMessageHelper.setText(text, true);
@@ -57,12 +57,16 @@ public class MailSenderService {
     public void sendPasswordResetLink(String email, String key) throws MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
+
         mimeMessageHelper.setTo(email);
         mimeMessageHelper.setFrom(DOMAIN_OWNER_EMAIL);
         mimeMessageHelper.setSubject("Link do resetu hasła");
-        String link = "<a href=\"http://localhost:8080/resetHasla?klucz=" + key + "\">TUTAJ</a>";
+
+        String link = "<a href=\"http://localhost:8080/resetPassword?klucz=" + key + "\">TUTAJ</a>";
+
         String text = "<p>Cześć! Tutaj link do resetu hasła: + " + link + "</p>";
         mimeMessageHelper.setText(text, true);
+
         javaMailSender.send(mimeMessage);
     }
 }
