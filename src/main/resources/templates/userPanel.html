@@ -10,11 +10,7 @@
     <h2>Edycja danych użytkownika</h2>
     <br>
     <form th:href="|/user/${userToEdit.id}|" method="post" th:object="${userToEdit}">
-        <div class="mb-3">
-            <label for="email" class="form-label">Mail</label>
-            <input type="email" class="form-control" id="email" aria-describedby="inputGroupPrepend2" required
-                   th:field="*{email}">
-        </div>
+
         <div class="mb-3">
             <label for="firstName" class="form-label">Imię</label>
             <input type="text" class="form-control" id="firstName" aria-describedby="inputGroupPrepend2" required
@@ -24,6 +20,11 @@
             <label for="lastName" class="form-label">Nazwisko</label>
             <input type="text" class="form-control" id="lastName" aria-describedby="inputGroupPrepend2" required
                    th:field="*{lastName}">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Hasło</label>
+            <input type="text" class="form-control" id="password" aria-describedby="inputGroupPrepend2" required
+                   th:field="*{password}">
         </div>
         <div class="mb-3">
             <button type="submit" class="btn btn-primary mb-3">Zapisz</button>

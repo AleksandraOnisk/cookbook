@@ -2,8 +2,9 @@ package pl.olita.cookbook.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pl.olita.cookbook.ingredient.Ingredient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.olita.cookbook.user.User;
 import pl.olita.cookbook.user.UserService;
 

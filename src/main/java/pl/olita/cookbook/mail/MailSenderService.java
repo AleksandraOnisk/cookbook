@@ -12,6 +12,7 @@ public class MailSenderService {
 
     private static final String DOMAIN_OWNER_EMAIL = "olitacookbook@gmail.com";
     private JavaMailSender javaMailSender;
+
     public MailSenderService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }

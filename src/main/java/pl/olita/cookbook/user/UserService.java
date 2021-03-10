@@ -5,7 +5,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.olita.cookbook.mail.MailSenderService;
-import pl.olita.cookbook.recipe.Recipe;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -88,6 +87,7 @@ public class UserService {
                 .orElseThrow(() -> new IllegalArgumentException("Użytkownik o id " + id + " nie znaleziony"));
         userToEdit.setFirstName(user.getFirstName());
         userToEdit.setLastName(user.getLastName());
+        userToEdit.setPassword(user.getPassword());
         return userRepository.save(userToEdit);
     }
 }
