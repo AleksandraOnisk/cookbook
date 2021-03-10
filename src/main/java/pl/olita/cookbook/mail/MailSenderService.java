@@ -30,7 +30,7 @@ public class MailSenderService {
         mimeMessageHelper.setFrom(email);
         mimeMessageHelper.setSubject("Wiadomość z formularza kontaktowego");
         mimeMessageHelper.setReplyTo(email);
-        String text = "<p>Wiadomość od: " + username + "(" + email + ") </p>";
+        String text = "<p>Wiadomość od: " + email + "(" + email + ") </p>";
         text += "<p>Treść wiadomości: </p>";
         text += content;
         mimeMessageHelper.setText(text, true);
