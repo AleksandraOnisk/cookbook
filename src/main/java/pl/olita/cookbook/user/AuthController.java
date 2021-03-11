@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Optional;
 
@@ -18,12 +19,13 @@ public class AuthController {
 
     @GetMapping("/login")
     public String loginForm(@RequestParam(required = false) String error,
-                            Model model) {
+                            RedirectAttributes redirectAttributes) {
         boolean showErrorMessage = false;
         if (error != null) {
             showErrorMessage = true;
         }
-        model.addAttribute("showErrorMessage", showErrorMessage);
+        redirectAttributes.addFlashAttribute("showErrorMessage", showErrorMessage);
+        redirectAttributes.addFlashAttribute("successMessage", false);
         return "login";
     }
 
@@ -35,16 +37,23 @@ public class AuthController {
 
     @PostMapping("/register")
     public String addUser(@ModelAttribute User user,
-                          BindingResult bindResult) {
-        if (bindResult.hasErrors())
+                          BindingResult bindResult,
+                          RedirectAttributes redirectAttributes) {
+        boolean showErrorMessage = false;
+
+        if (bindResult.hasErrors()) {
+            showErrorMessage = true;
+            redirectAttributes.addFlashAttribute("showErrorMessage", showErrorMessage);
             return "register";
-        else {
+        } else {
             String firstName = user.getFirstName();
             String lastName = user.getLastName();
             String email = user.getEmail();
             String rawPassword = user.getPassword();
             userService.registerUser(firstName, lastName, email, rawPassword);
-            return "registerSuccess";
+            redirectAttributes.addFlashAttribute("showErrorMessage", showErrorMessage);
+            redirectAttributes.addFlashAttribute("successMessage", true);
+            return "redirect:/login";
         }
     }
 

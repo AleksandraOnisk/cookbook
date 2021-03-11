@@ -15,6 +15,10 @@
         Niepoprawne logowanie!
         <br>
         Spróbuj ponownie
+
+
+    <p th:if="${successMessage == true}">
+        Udało się założyć konto, możesz się teraz zalogować
     </p>
 
     <form th:action="@{/login}" method="post">
@@ -32,8 +36,10 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Zaloguj się</button>
+        <br>
+        <a href="/reset">Nie pamietasz hasła?</a>
     </form>
-    <a href="/reset">Nie pamietasz hasła?</a>
+
 </div>
 </body>
 </html>

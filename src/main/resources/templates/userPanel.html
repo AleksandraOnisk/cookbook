@@ -6,7 +6,7 @@
 <div th:replace="fragments :: header"></div>
 <div class="content">
     <br>
-    <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a>
+    <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a><br>
     <h2>Edycja danych użytkownika</h2>
     <br>
     <form th:href="|/user/${userToEdit.id}|" method="post" th:object="${userToEdit}">
@@ -23,7 +23,7 @@
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Hasło</label>
-            <input type="text" class="form-control" id="password" aria-describedby="inputGroupPrepend2" required
+            <input type="password" class="form-control" id="password" aria-describedby="inputGroupPrepend2"
                    th:field="*{password}">
         </div>
         <div class="mb-3">
