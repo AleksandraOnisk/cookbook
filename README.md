@@ -1,6 +1,6 @@
 #Książka kucharska Olita
 
-Przedmiotem niniejszego projektu jest aplikacja wykorzystująca Spring MVC, Data i Thymeleafa. Do przechowywania danych wykorzystano bazę danych H2.
+Przedmiotem niniejszego projektu jest aplikacja wykorzystująca Spring MVC, Data, Thymeleafa oraz Security. Do przechowywania danych wykorzystano bazę danych H2.
 
 Stworzona aplikacja zawiera następujące funkcjonalności:
 
