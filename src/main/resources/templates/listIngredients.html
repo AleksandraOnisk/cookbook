@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/recipe" role="button">Powrót do wszystkich przepisów</a>
+    <h2>Lista składników</h2>
+    <br>
+    <form th:action="|/recipe/listIngredients|" method="post" th:object="${ingredients}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nazwa składnika</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="ingredient, iter : ${ingredients}">
+                <th scope="row" th:text="${iter.count}"> 1</th>
+                <td th:text="|${ingredient.name}|"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

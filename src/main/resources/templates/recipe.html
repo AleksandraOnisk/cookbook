@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content" >
+    <br>
+    <a class="btn btn-primary" href="/recipe" role="button">Wróc</a>
+    <br><br/>
+    <h2 th th:text="${recipe.title}"></h2>
+
+    <b> Opis: </b><br/>
+    <span th:text="${recipe.introduction}"> </span><br/><br/>
+
+    <b>Czas przygotowania:</b><br/>
+    <span th:text="${recipe.prepTime}"> </span><br/><br/>
+
+    <b>Ilość porcji :</b><br/>
+    <span th:text="${recipe.numberOfServings}"> </span><br/><br/>
+
+    <b>Kategoria :</b><br/>
+    <span th:text="${recipe.category.displayName}"> </span><br/><br/>
+
+    <b>Składniki :</b><br/>
+    <a class="btn btn-primary" href="/addIngredients" role="button">Dodaj składnik</a><br>
+    <span th:each="ingredient : ${recipe.ingredients}" th:text="|${ingredient.name}, |"> </span><br/><br/>
+
+    <b>Przygotowanie :</b><br/>
+    <td>
+        <span th:text="${recipe.description}"> </span><br/><br/>
+    </td>
+    <b>Ilośc lajków :</b><br/>
+    <td>
+        <span th:text="${recipe.likes}"> </span><br/><br/><br>
+        <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/addLike|" role="button">Lubię to!</a>
+
+    </td>
+
+    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/edit|" role="button">Edytuj przepis</a>
+    <a class="btn btn-primary" th:href="|/recipe/${recipe.id}/delete|" role="button">Usuń przepis</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/" role="button">Wróć na stronę główną</a>
+    <a class="btn btn-primary" href="/recipe/add" role="button">Dodaj nowy przepis</a>
+    <h1 style="text-align: center" class="mt-4" >WSZYSTKIE PRZEPISY</h1>
+    <ul class="nav nav-tabs" >
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/recipe">WSZYSTKIE</a>
+        </li>
+        <li class="nav-item" th:each="category : ${T(pl.olita.cookbook.category.Category).values()}">
+            <a class="nav-link" aria-current="page" th:href="|/recipe/?category=${category.name()}|"
+               th:text="${category.getDisplayName()}"></a>
+        </li>
+    </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tytuł przepisu</th>
+            <th scope="col">Czas przygotowania</th>
+            <th scope="col">Ilość porcji</th>
+            <th scope="col">Ilośc polubień</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe, iter : ${recipesList}">
+            <th scope="row" th:text="${iter.count}"> 1</th>
+            <td>
+                <a th:href="|/recipe/${recipe.id}|" th:text="|${recipe.title}|"> </a>
+            </td>
+            <td th:text="|${recipe.prepTime} min|"></td>
+            <td th:text="|${recipe.numberOfServings}|"></td>
+            <td>
+                <span th:text="${recipe.likes}">  </span>
+            </td>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
