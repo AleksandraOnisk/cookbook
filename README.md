@@ -1,7 +1,7 @@
 #Książka kucharska Olita
 
+### Opis projektu
 Przedmiotem niniejszego projektu jest aplikacja wykorzystująca Spring MVC, Data, Thymeleafa oraz Security. Do przechowywania danych wykorzystano bazę danych H2.
-
 Stworzona aplikacja zawiera następujące funkcjonalności:
 
 - Dodawania nowego przepisu
@@ -17,7 +17,8 @@ Stworzona aplikacja zawiera następujące funkcjonalności:
 - Panel użytkownika z możliwośćią zmiany hasła
 - Panel administratora z możliwością usuwania użytkowników
 
+### Adres aplikacji
 Aktualna wersja brancha master budowana jest automatycznie i dostępna jest po adresem http://localhost:8080
 
-###Uruchomienie projektu
+### Uruchomienie projektu
 W celu uruchomienia projektu sklonuj kod źródłowy, a następnie utwórz w IntelliJ konfigurację startową dodając do niej profil: dev
