@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a>
+    <br>
+
+    <h1 style="text-align: left" class="mt-4">Zaloguj się do Olita Cookbook</h1><br>
+
+    <p th:if="${showErrorMessage}">
+        Niepoprawne logowanie!
+        <br>
+        Spróbuj ponownie
+
+
+    <p th:if="${successMessage == true}">
+        Udało się założyć konto, możesz się teraz zalogować
+    </p>
+
+    <form action="#" th:action="@{/login}" method="post">
+        <div class="mb-5 row">
+            <label for="username" class="col-sm-1 col-form-label">Mail</label>
+            <div class="col-sm-3">
+                <input name="username" type="email" class="form-control" id="username" placeholder="email@poczta.pl"
+                       required>
+            </div>
+        </div>
+        <div class="mb-5 row">
+            <label for="inputPassword" class="col-sm-1 col-form-label">Hasło</label>
+            <div class="col-sm-3">
+                <input name="password" type="password" class="form-control" id="inputPassword" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Zaloguj się</button>
+        <br>
+        <a href="/reset">Nie pamietasz hasła?</a>
+    </form>
+
+</div>
+</body>
+</html>

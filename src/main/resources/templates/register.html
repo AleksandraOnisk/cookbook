@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <h1 style="text-align: left" class="mt-4">Zarejestruj się do Olita Cookbook</h1><br>
+
+    <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a>
+    <br><br>
+
+    <form action="#" method="post" th:action="@{/register}" th:object="${user}">
+        <div class="mb-3 row">
+            <label for="firstName" class="col-sm-3 col-form-label">Imię</label>
+            <div class="col-sm-3">
+                <input th:field="*{firstName}" type="text" class="form-control" id="firstName" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="lastName" class="col-sm-3 col-form-label">Nazwisko</label>
+            <div class="col-sm-3">
+                <input th:field="*{lastName}" type="text" class="form-control" id="lastName" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">Mail</label>
+            <div class="col-sm-3">
+                <input th:field="*{email}" type="email" class="form-control" id="staticEmail"
+                       placeholder="email@poczta.com" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-3 col-form-label">Hasło</label>
+            <div class="col-sm-3">
+                <input th:field="*{password}" name="password" type="password" class="form-control" id="inputPassword"
+                       required>
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-14 mx-auto">
+            <input type="submit" class="btn btn-danger btn-lg" value="Zarejestruj się"></button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

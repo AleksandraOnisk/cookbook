@@ -9,10 +9,11 @@
     <a class="btn btn-primary" href="/recipe" role="button">Powrót do wszystkich przepisów</a>
     <h2>Edytowanie przepisu</h2>
     <br>
-    <form th:href="|/recipe/${recipeToEdit.id}|" method="post" th:object="${recipeToEdit}">
+    <form th:action="|/recipe/${recipeToEdit.id}/edit|" method="post" th:object="${recipeToEdit}">
         <div class="mb-3">
             <label for="title" class="form-label">Tytuł przepisu</label>
-            <input type="text" class="form-control" id="title"  aria-describedby="inputGroupPrepend2" required th:field="*{title}">
+            <input type="text" class="form-control" id="title" aria-describedby="inputGroupPrepend2" required
+                   th:field="*{title}">
         </div>
         <div class="mb-3">
             <label for="introduction" class="form-label">Podsumowanie</label>

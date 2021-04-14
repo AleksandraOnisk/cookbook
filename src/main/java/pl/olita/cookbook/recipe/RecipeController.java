@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.olita.cookbook.category.Category;
 import pl.olita.cookbook.ingredient.Ingredient;
+import pl.olita.cookbook.user.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,9 @@ public class RecipeController {
     @GetMapping("/")
     public String home(Model model) {
         List<Recipe> recipesList = recipeService.find3MostLikes();
+        List<User> users = recipeService.findCurrentUser();
         model.addAttribute("recipesList", recipesList);
+        model.addAttribute("users", users);
         return "home";
     }
 

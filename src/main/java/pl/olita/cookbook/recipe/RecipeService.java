@@ -1,21 +1,28 @@
 package pl.olita.cookbook.recipe;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import pl.olita.cookbook.category.Category;
 import pl.olita.cookbook.ingredient.IngredientRepository;
+import pl.olita.cookbook.user.User;
+import pl.olita.cookbook.user.UserRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
 
     private RecipeRepository recipeRepository;
     private IngredientRepository ingredientRepository;
+    private UserRepository userRepository;
 
-    public RecipeService(RecipeRepository recipeRepository, IngredientRepository ingredientRepository) {
+    public RecipeService(RecipeRepository recipeRepository, IngredientRepository ingredientRepository, UserRepository userRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Recipe> findByCategoryOrderByTitleAsc(Category category) {
@@ -56,5 +63,13 @@ public class RecipeService {
         recipeToEdit.setCategory(recipe.getCategory());
         recipeToEdit.setDescription(recipe.getDescription());
         return recipeRepository.save(recipeToEdit);
+    }
+
+    public List<User> findCurrentUser() {
+        Authentication currentUser = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findAll()
+                .stream()
+                .filter(user -> user.getEmail().equals(currentUser.getName()))
+                .collect(Collectors.toList());
     }
 }

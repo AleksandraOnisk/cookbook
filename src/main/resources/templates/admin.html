@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <br>
+    <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a>
+    <h1 style="text-align: left" class="mt-4">Panel admina</h1> <br>
+    <h3>Lista użytkowników: </h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Imię</th>
+            <th scope="col">Nazwisko</th>
+            <th scope="col">Mail</th>
+            <th scope="col">Usuń</th>
+            <th scope="col">Rola</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, iter : ${usersList}">
+            <th scope="row" th:text="${iter.count}"> 1</th>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td>
+                <a th:href="|/admin/deleteUser/${user.id}|" class="btn btn-primary">Usuń</a>
+            </td>
+            <td th:each="role : ${user.roles}" th:text="|${role.getRole().displayName}|"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
