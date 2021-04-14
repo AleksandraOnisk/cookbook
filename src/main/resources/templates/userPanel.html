@@ -9,7 +9,7 @@
     <a class="btn btn-primary" href="/" role="button">Powrót do strony głównej</a><br>
     <h2>Edycja danych użytkownika</h2>
     <br>
-    <form th:href="|/user/${userToEdit.id}|" method="post" th:object="${userToEdit}">
+    <form th:action="|/user/${userToEdit.id}|" method="post" th:object="${userToEdit}">
 
         <div class="mb-3">
             <label for="firstName" class="form-label">Imię</label>
