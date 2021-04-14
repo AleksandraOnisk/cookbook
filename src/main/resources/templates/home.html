@@ -10,7 +10,7 @@
     <a sec:authorize="!isAuthenticated" class="btn btn-primary" href="/login" role="button">Zaloguj się</a>
     <a sec:authorize="hasRole('ADMIN')" class="btn btn-primary" href="/admin" role="button"> Panel admina</a>
     <a sec:authorize="hasRole('USER')" class="btn btn-primary" th:each="user: ${users}" th:object="${user}"
-       th:href="|/user/${user.id}|" role="button"> Panel użytkownika</a>
+       th:href="|/user/${user.id}|" role="button">Panel użytkownika</a>
     <span sec:authorize="isAuthenticated()">
         <a class="btn btn-primary" href="/logout" role="button"> Wyloguj się</a>
     </span>

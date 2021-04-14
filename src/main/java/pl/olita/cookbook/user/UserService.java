@@ -82,7 +82,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public User saveEditedUser(User user, Long id) {
+    public User saveEditedUser(Long id, User user) {
         User userToEdit = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Użytkownik o id " + id + " nie znaleziony"));
         userToEdit.setFirstName(user.getFirstName());
