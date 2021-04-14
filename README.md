@@ -17,3 +17,7 @@ Stworzona aplikacja zawiera następujące funkcjonalności:
 - Panel użytkownika z możliwośćią zmiany hasła
 - Panel administratora z możliwością usuwania użytkowników
 
+Aktualna wersja brancha master budowana jest automatycznie i dostępna jest po adresem http://localhost:8080
+
+###Uruchomienie projektu
+W celu uruchomienia projektu sklonuj kod źródłowy, a następnie utwórz w IntelliJ konfigurację startową dodając do niej profil: dev
